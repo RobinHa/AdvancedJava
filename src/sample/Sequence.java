@@ -6,28 +6,18 @@ package sample;
  */
 public class Sequence {
 
-    private int sequenceNumber;
     private String sequenceName;
-    private String sequence;
     private Nucleotides[] nuclSequence;
 
-    public Sequence(int sequenceNumber, String sequenceName, String sequence){
-        this.setSequenceNumber(sequenceNumber);
+    public Sequence(String sequenceName, String sequence){
         this.setSequenceName(sequenceName);
-        Nucleotides[] nuclSequence = new Nucleotides[sequence.length()];
-        for(int i=0; i<sequence.length(); i++){
-           nuclSequence[i] = new Nucleotides(i + 1, sequence.charAt(i));
-        }
-        this.nuclSequence = nuclSequence;
+        this.nuclSequence = convertStringToNuclSequence(sequence);
     }
 
-    public int getSequenceNumber() {
-        return sequenceNumber;
+    public Sequence(String sequenceName){
+        this.setSequenceName(sequenceName);
     }
 
-    public void setSequenceNumber(int sequenceNumber) {
-        this.sequenceNumber = sequenceNumber;
-    }
 
     public String getSequenceName() {
         return sequenceName;
@@ -35,14 +25,6 @@ public class Sequence {
 
     public void setSequenceName(String sequenceName) {
         this.sequenceName = sequenceName;
-    }
-
-    public String getSequence() {
-        return sequence;
-    }
-
-    public void setSequence(String sequence) {
-        this.sequence = sequence;
     }
 
     public void setNuclSequence(Nucleotides[] nuclSequence) {
@@ -56,7 +38,7 @@ public class Sequence {
     public static Nucleotides[] convertStringToNuclSequence(String sequence) {
         Nucleotides[] nuclSequence = new Nucleotides[sequence.length()];
         for(int i=0; i<sequence.length(); i++){
-            nuclSequence[i] = new Nucleotides(i + 1, sequence.charAt(i));
+            nuclSequence[i] = new Nucleotides(i, sequence.charAt(i));
         }
         return nuclSequence;
     }

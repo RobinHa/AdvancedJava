@@ -28,21 +28,28 @@ public class FastaReader {
     public void readFile(String file){
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
-            int lineNum = 1;
             String currLine = "";
-            Sequence e= new Sequence(0, "", "");
+            String currentSeqName = ">Not a sequence";
+            String currentSequence = null;
+            boolean firstSequence = true;
             while((currLine = br.readLine()) != null){
-                if(Pattern.matches(">.*", currLine)){
-                    e = new Sequence(lineNum, currLine, "");
-                    Sequences.add(e);
-                    lineNum++;
+                if(Pattern.matches(">.*", currLine) && firstSequence){
+                    currentSeqName = currLine;
+                    firstSequence = false;
                 }
-                else if((e !=null) && Pattern.matches(".+", currLine) ){
-                    e.setSequence(e.getSequence()+currLine);
-                    e.setNuclSequence(Sequence.
-                            convertStringToNuclSequence(e.getSequence()));
+                else if(Pattern.matches(">.*", currLine) && !firstSequence){
+                    Sequences.add(new Sequence(currentSeqName, currentSequence));
+                    currentSeqName = currLine;
+                    currentSequence = null;
+                }
+                else if(currentSequence == null && Pattern.matches(".+", currLine) ){
+                    currentSequence = currLine;
+                }
+                else if((currentSequence !=null) && Pattern.matches(".+", currLine) ){
+                    currentSequence += currLine;
                 }
             }
+            Sequences.add(new Sequence(currentSeqName, currentSequence));
         }
         catch (IOException e) {
             e.printStackTrace();

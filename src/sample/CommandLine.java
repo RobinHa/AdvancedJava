@@ -8,22 +8,37 @@ import java.util.LinkedList;
 public class CommandLine {
 
     //the length of the displayed sequence per line
-    private static int displayFrame = 60;
+    private static int sequenceDisplayFrame = 50;
+    private static int nameDisplayLenght = 23;2
 
     public static void printSequenceAlignment(int start, int end, LinkedList<Sequence> seq){
-        int currentPosition = start;
+        int currentPosition = start-1;
         String output = "";
-        while(currentPosition < end){
-            output += currentPosition + "\t" + currentPosition+displayFrame ;
+
+        while(currentPosition < end-1){
+            printSequenceNumbering(currentPosition,currentPosition+sequenceDisplayFrame);
             for(Sequence s: seq){
-                output += "\n" + s.getSequenceName();
-                for(int i = currentPosition; i<end && i<(currentPosition + displayFrame); i++){
+                output = "";
+                for(int i = currentPosition; i<end-1 && i<(currentPosition + sequenceDisplayFrame); i++){
                     output += s.getNucleotideAt(i).getNucleotide();
                 }
+                System.out.format("\n%-" + nameDisplayLenght
+                        + "s \t%-" + sequenceDisplayFrame
+                        + "s", s.getSequenceName(), output);
             }
-            currentPosition += displayFrame;
+            currentPosition += sequenceDisplayFrame;
         }
-        System.out.print(output);
     }
 
+
+    /**
+     * prints the base position above the alignment
+     * @param start
+     * @param end
+     */
+    private static void printSequenceNumbering(int start, int end){
+        System.out.printf("\n%" + nameDisplayLenght
+                + "s \t%-"+ (sequenceDisplayFrame-1)
+                + "d%d", "", start+1, end);
+    }
 }
