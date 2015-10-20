@@ -9,7 +9,8 @@ public class CommandLine {
 
     //the length of the displayed sequence per line
     private static int sequenceDisplayFrame = 50;
-    private static int nameDisplayLenght = 23;2
+    private static int nameDisplayLenght = 23;
+
 
     public static void printSequenceAlignment(int start, int end, LinkedList<Sequence> seq){
         int currentPosition = start-1;
