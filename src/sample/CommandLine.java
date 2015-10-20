@@ -9,9 +9,17 @@ public class CommandLine {
 
     //the length of the displayed sequence per line
     private static int sequenceDisplayFrame = 50;
+    //length of the sequence name per line
     private static int nameDisplayLenght = 23;
 
 
+    /**
+     * formats and prints the MSA
+     * TODO outsource some loops into new methods
+     * @param start
+     * @param end
+     * @param seq
+     */
     public static void printSequenceAlignment(int start, int end, LinkedList<Sequence> seq){
         int currentPosition = start-1;
         String output = "";

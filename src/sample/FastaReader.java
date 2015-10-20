@@ -22,7 +22,7 @@ public class FastaReader {
     }
 
     /**
-     *
+     *  Reads and converts a fastA file into a Sequence object
      * @param file the file name
      */
     public void readFile(String file){

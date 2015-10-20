@@ -9,8 +9,8 @@ public class Nucleotides {
     private char nucleotide;
 
     /**
-     * Constructer
-     * @param position
+     * Constructer for a Nucleotide in a sequence.
+     * @param position of the base
      * @param nucleotide
      */
     public Nucleotides(int position, char nucleotide){
