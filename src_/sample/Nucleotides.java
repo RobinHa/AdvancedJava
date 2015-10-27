@@ -5,8 +5,6 @@ package sample;
  */
 public class Nucleotides {
 
-
-    final static private char[] BASES = {'A', 'G', 'C', 'U', 'a', 'g', 'c', 'u', '-'};
     private int position;
     private char nucleotide;
 
@@ -16,8 +14,8 @@ public class Nucleotides {
      * @param nucleotide
      */
     public Nucleotides(int position, char nucleotide){
-            this.position = position;
-            this.nucleotide = nucleotide;
+        this.position = position;
+        this.nucleotide = nucleotide;
     }
 
     public char getNucleotide() {

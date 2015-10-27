@@ -16,9 +16,9 @@ public class FastaReader {
     private LinkedList<Sequence> Sequences  = new LinkedList<Sequence>();
 
     //Constucts
-    public FastaReader(String path) throws Exception{
-        readFile(path);
+    public FastaReader(String path){
         this.filePath=path;
+        readFile(path);
     }
 
     /**

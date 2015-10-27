@@ -54,18 +54,4 @@ public class Sequence {
     public Nucleotides getNucleotideAt(int i){
         return nuclSequence[i];
     }
-
-    /**
-     * Gives a subsequence in String represantation
-     * @param start
-     * @param end
-     * @return
-     */
-    public String getNucleotideFromTo(int start, int end){
-        String sequencePart = this.getNucleotideAt(start).getNucleotide() + "";
-        for(int i= start+1; i<end; i++){
-            sequencePart += this.getNucleotideAt(i).getNucleotide();
-        }
-        return sequencePart;
-    }
 }
