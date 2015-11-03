@@ -1,0 +1,137 @@
+% comments are initialized by a percent sign
+
+% document class (scrartcl is recommended for german/european layout)
+\documentclass[a4paper, fontsize=12pt]{scrartcl}
+
+\usepackage[ngerman]{babel}
+
+% modify the page geometry to fit the DIN-Norm
+\usepackage[paperwidth=210mm, 
+paperheight=290mm,
+outer=20mm, 
+inner=25mm,
+top=20mm,
+bottom=30mm]{geometry}
+
+\usepackage[onehalfspacing]{setspace}
+\usepackage[justification=centering]{caption}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{eulervm}
+\usepackage{mathpazo}
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.3}
+\usepackage{todonotes}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage[section]{placeins}
+\usepackage{tikz}
+
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{lmodern,dsfont}
+\usepackage{dsfont}
+%\usepackage{wasysym}
+\usepackage{ulem}
+\usepackage{graphicx}
+\usepackage{eurosym}
+%\usepackage{txfonts}
+\usepackage{stmaryrd}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{etextools}
+\usepackage{ifthen}
+\usetikzlibrary{automata,arrows}
+\usepackage{algpseudocode}
+\usepackage{algorithmicx}
+\usepackage{algorithm}
+
+%%%%%% here goes new commands  %%%%%%
+
+%%%%%% % % % % % % % % % % % % %%%%%%
+
+% define header/footer
+\usepackage{lastpage}
+\usepackage[footsepline,headsepline]{scrpage2}
+
+% defines the distance between the header and the following text, muss je nach öhe des Headers angepasst werden
+\setlength{\headheight}{1.5\baselineskip}
+
+\pagestyle{scrheadings}
+\ihead{Advanced Java \\Tutor: Anna Gorska}
+\ohead{03.11.2015 - Assignment 3\\ Robin Harmening}
+\lofoot{}
+\ofoot{Seite \thepage\ von \pageref{LastPage}}
+\cfoot{} % if left empty, removes page number at center
+
+% sets the indent of a new paragraph to 0 
+\setlength{\parindent}{0pt}
+
+%%%%%%%%%%%%%%%%%%%%%%%% document content begins here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\section*{Exercise 2}
+In java, beans often represent real world data. Represented as object with which you an interact, define different properties and they can be observed. They are good for handling and observing changes, as well as acting on these changes and properties. They are often used to modify and store data, for later use.\\
+A Property in JavaFX is a convention, after which some objects may follow. It defines the getter, setter and a new function in JavaFX, the ...Property(). As an example, here is a short implementation of a property:
+\begin{lstlisting}
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+class Temperature {
+ 
+    // Define a variable to store the property
+    private DoubleProperty temper = new SimpleDoubleProperty();
+ 
+    // Define a getter for the property's value
+    public final double getTemper(){return temper.get();}
+ 
+    // Define a setter for the property's value
+    public final void setTemper(double value){temper.set(value);}
+ 
+     // Define a property getter for the property itself
+    public DoubleProperty temperProperty() {return temper;}
+}
+\end{lstlisting}
+the temperProperty returns the whole object, not just a value of it.
+Events that change on property changes can be implemented with the ChangeListener:
+\begin{lstlisting}
+public class Main{
+	public static void main(String[] args) {
+		Temperatur temper = new Temperatur(10);
+		
+		temper.temperProperty()
+			.addListener(new ChangeListener(){e ->
+			 System.out.print("Temperatur changed");}
+	}
+}
+
+\end{lstlisting}
+ 
+Bindings are used to bind to variables or objects together, so they always depend on eachother (or just in one way). In the following example from \url{https://docs.oracle.com/javafx/2/binding/jfxpub-binding.htm} the sum is bepending on the two values of num1 and num2:
+ \begin{lstlisting}
+package bindingdemo;
+ 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.binding.NumberBinding;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+        IntegerProperty num1 = new SimpleIntegerProperty(1);
+        IntegerProperty num2 = new SimpleIntegerProperty(2);
+        NumberBinding sum = num1.add(num2);
+        System.out.println(sum.getValue());
+        num1.set(2);
+        System.out.println(sum.getValue());
+    }
+}
+\end{lstlisting}
+
+To enable a button only of the length of the input in a given field is greater or equal than x, you simply bind the length value of the input to the isUsable (or similar) propertie of the Button. Further you could bind the property isSelected of a Radiobutton group to the same button, so the button is only useable if there are at least x symbols in the text field and one of the options of the radiobuttons is selected.\\\\
+source: \url{https://docs.oracle.com/javafx/2/binding/jfxpub-binding.htm} 
+\end{document}
