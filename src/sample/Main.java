@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -137,8 +139,20 @@ public class Main extends Application {
         //TODO implement silder
         Slider slider = new Slider();
         slider.setPrefWidth(prefWidth - (controlls.getVgap() * 2));
-        slider.setMajorTickUnit(15.);
-        slider.setBlockIncrement(15.);
+        slider.setMax(80);
+        slider.setMin(1);
+        slider.adjustValue(80);
+        slider.increment();
+        slider.setMinorTickCount(4);
+        slider.setSnapToTicks(true);
+        slider.setShowTickLabels(true);
+        slider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int newV = newValue.intValue();
+                output.setPrefColumnCount(newV);
+            }
+        });
 
         controlls.getChildren().addAll(buttonList);
         controlls.getChildren().add(slider);

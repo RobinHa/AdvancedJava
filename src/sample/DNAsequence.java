@@ -97,8 +97,8 @@ public class DNAsequence {
         for(Nucleotide b : sequence){
             switch (b){
                 case Thymin:
-                case Uracil: b = sample.Nucleotide.Alanin; break;
-                case Alanin: b = (toRNA ? sample.Nucleotide.Uracil : sample.Nucleotide.Thymin); break;
+                case Uracil: b = sample.Nucleotide.Adenin; break;
+                case Adenin: b = (toRNA ? sample.Nucleotide.Uracil : sample.Nucleotide.Thymin); break;
                 case Guanin: b = sample.Nucleotide.Cytosin; break;
                 case Cytosin: b = sample.Nucleotide.Guanin; break;
                 default: break;
@@ -135,7 +135,7 @@ public class DNAsequence {
      * @return
      */
     public static String makeLegitSequence(String input){
-        return input.replaceAll("[^AGTCUagtcu]", "");
+        return input.replaceAll("[^AGTCagtc]", "");
     }
 
 }

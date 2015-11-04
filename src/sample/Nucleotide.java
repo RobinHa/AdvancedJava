@@ -4,7 +4,7 @@ package sample;
  * Created by Robin on 03.11.2015.
  */
 public enum Nucleotide {
-    Alanin  ('A', 'a', "Purin", "BOTH"),
+    Adenin  ('A', 'a', "Purin", "BOTH"),
     Guanin  ('G', 'g', "Purin", "BOTH"),
     Cytosin ('C', 'c', "Pyrimidin", "BOTH"),
     Thymin  ('T', 't', "Pyrimidin", "DNA"),
@@ -54,7 +54,7 @@ public enum Nucleotide {
         switch (symbol){
             case 'A':
             case 'a':
-               return Alanin;
+               return Adenin;
             case 'T':
             case 't':
                 return Thymin;
